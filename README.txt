@@ -1,0 +1,1 @@
+AssetQuant V9 — Open index.html using VS Code Live Server. Keep index.html, styles.css, script.js and v8-interactions.js in the same folder. Hero orbit includes a CSS/SVG fallback that runs even if canvas cannot initialise. All demonstrations use illustrative data. Contact form requires production backend.
