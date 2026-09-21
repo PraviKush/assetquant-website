@@ -1,0 +1,8 @@
+/* V10.1: travelling input/output signals and responsive presentation */
+.engine-paths{overflow:visible}.engine-paths .aq-traveller{filter:drop-shadow(0 0 4px currentColor);stroke:#142a2a;stroke-width:.6;opacity:1}
+@media (prefers-reduced-motion:reduce){.engine-paths .aq-traveller{display:none}}
+@media(max-width:850px){.engine-paths{display:block;position:relative;grid-column:1/-1;grid-row:2;width:100%;height:38px;overflow:hidden;order:0}.engine-map{display:flex;flex-direction:column;gap:8px}.engine-column{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.engine-core{width:100%;max-width:none}.engine-paths{display:none}.engine-column .engine-label{grid-column:1/-1}.engine-column .engine-card{min-width:0;overflow-wrap:anywhere}}
+@media(min-width:851px){.engine-map{position:relative}.engine-paths{pointer-events:none}}
+
+/* V10.2: real form submission and confirmation state */
+.form-success{padding:28px 0 16px}.form-success[hidden],.form-actions[hidden],.step-bars[hidden]{display:none!important}.form-success h2{font-size:clamp(30px,4vw,46px);line-height:1.12;margin:18px 0}.form-success p:not(.eyebrow){line-height:1.7;color:#50645e;margin-bottom:28px}#submit-enquiry:disabled{opacity:.65;cursor:wait}

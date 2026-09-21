@@ -29,6 +29,7 @@ const scenarios = {
 };
 $$('.scenario').forEach(btn => btn.addEventListener('click', () => { const key = btn.dataset.scenario; const scenario = scenarios[key]; $$('.scenario').forEach(item => { const active = item === btn; item.classList.toggle('active', active); item.setAttribute('aria-selected', String(active)); }); scenario.inputs.forEach(([title, detail], index) => { $(`#input-${index + 1}`).replaceChildren(document.createTextNode(title)); const small = document.createElement('small'); small.textContent = detail; $(`#input-${index + 1}`).append(small); }); scenario.outputs.forEach(([title, detail], index) => { $(`#output-${index + 1}`).replaceChildren(document.createTextNode(title)); const small = document.createElement('small'); small.textContent = detail; $(`#output-${index + 1}`).append(small); }); $('.core-actions').replaceChildren(...scenario.actions.map(action => { const span = document.createElement('span'); span.textContent = action; return span; })); }));
 
+if (document.getElementById("revenue")) {
 const revenue = $('#revenue'), cost = $('#cost'), growth = $('#growth');
 const lakh = number => `₹${number.toFixed(1)}L`;
 const yearly = number => Math.abs(number) >= 100 ? `₹${(number / 100).toFixed(2)}Cr` : `₹${number.toFixed(1)}L`;
@@ -36,6 +37,8 @@ function updateModel() { const base = Number(revenue.value), operatingCost = Num
 [revenue, cost, growth].forEach(input => input.addEventListener('input', updateModel));
 $('#reset-model').addEventListener('click', () => { revenue.value = 50; cost.value = 30; growth.value = 10; updateModel(); });
 updateModel();
+
+}
 
 // Lightweight, original canvas illustration: no external graphics or 3D libraries required.
 const canvas = $('#network'), context = canvas.getContext('2d');
@@ -47,14 +50,59 @@ if (context) { let width = 0, height = 0, frame = 0, visible = true, pointer = {
 
 const modal = $('#contact-modal'), form = $('#enquiry-form'); let currentStep = 0, previousFocus = null;
 function renderStep() { $$('.form-step').forEach((el, index) => el.classList.toggle('active', index === currentStep)); $$('.step-bars i').forEach((el, index) => el.classList.toggle('current', index <= currentStep)); $('#step-indicator').textContent = `STEP 0${currentStep + 1} / 03`; $('#back-step').hidden = currentStep === 0; $('#next-step').hidden = currentStep === 2; $('#submit-enquiry').hidden = currentStep !== 2; $('#form-error').textContent = ''; $('.modal-dialog').scrollTop = 0; }
-function openContact() { previousFocus = document.activeElement; currentStep = 0; renderStep(); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-open'); $('.modal-close').focus(); }
+function openContact() { previousFocus = document.activeElement; currentStep = 0; $('#form-success').hidden = true; $('.form-actions', form).hidden = false; $('.step-bars', modal).hidden = false; renderStep(); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-open'); $('.modal-close').focus(); }
 function closeContact() { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open'); previousFocus?.focus(); }
 $$('[data-open-contact]').forEach(button => button.addEventListener('click', openContact));
 $$('[data-close-contact]').forEach(button => button.addEventListener('click', closeContact));
 modal.addEventListener('keydown', event => { if (event.key === 'Escape') closeContact(); if (event.key !== 'Tab') return; const focusable = $$('button:not([hidden]),input:not([type=radio]),textarea,input[type=radio]:checked', modal).filter(el => !el.closest('.form-step:not(.active)') && !el.disabled && el.getClientRects().length); const first = focusable[0], last = focusable.at(-1); if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); } else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); } });
 $('#next-step').addEventListener('click', () => { if (currentStep === 0 && !form.querySelector('input[name="interest"]:checked')) { $('#form-error').textContent = 'Please select an area to continue.'; return; } if (currentStep === 1 && !$('#project-details').value.trim()) { $('#form-error').textContent = 'Please describe your project or challenge.'; $('#project-details').focus(); return; } currentStep = Math.min(2, currentStep + 1); renderStep(); });
 $('#back-step').addEventListener('click', () => { currentStep = Math.max(0, currentStep - 1); renderStep(); });
-form.addEventListener('submit', event => { event.preventDefault(); if (!form.reportValidity()) return; const data = new FormData(form); const subject = `AssetQuant enquiry — ${data.get('interest')}`; const body = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nCompany: ${data.get('company') || 'Not provided'}\nInterest: ${data.get('interest')}\n\nProject details:\n${data.get('details')}`; $('#form-error').textContent = 'Opening your email app. Please review and send your message there.'; window.location.href = `mailto:hello@assetquant.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; });
+// Enquiries are submitted directly to the configured Formspree form; no email app is required.
+const ENQUIRY_ENDPOINT = 'https://formspree.io/f/mbglgzkw';
+let enquirySending = false;
+form.addEventListener('submit', async event => {
+ event.preventDefault();
+ if (enquirySending) return;
+ const name = $('#contact-name'), email = $('#contact-email'), details = $('#project-details');
+ const interest = form.querySelector('input[name="interest"]:checked');
+ if (!interest) { currentStep = 0; renderStep(); $('#form-error').textContent = 'Please select an area.'; return; }
+ if (!details.value.trim()) { currentStep = 1; renderStep(); $('#form-error').textContent = 'Please describe your project.'; details.focus(); return; }
+ if (!name.value.trim()) { name.setCustomValidity('Please enter your name.'); name.reportValidity(); name.setCustomValidity(''); return; }
+ if (!email.checkValidity()) { email.reportValidity(); return; }
+ const button = $('#submit-enquiry'), message = $('#form-error');
+ const payload = new FormData(form);
+ payload.set('_subject', `AssetQuant project enquiry — ${interest.value}`);
+ payload.set('details', details.value.trim());
+ payload.set('name', name.value.trim());
+ payload.set('email', email.value.trim());
+ enquirySending = true;
+ button.disabled = true;
+ button.innerHTML = 'Sending…';
+ message.textContent = 'Sending your enquiry securely…';
+ try {
+  const response = await fetch(ENQUIRY_ENDPOINT, { method: 'POST', body: payload, headers: { Accept: 'application/json' } });
+  if (!response.ok) {
+   let errorText = 'Your enquiry could not be sent. Please try again.';
+   try { const result = await response.json(); if (Array.isArray(result.errors) && result.errors.length) errorText = result.errors.map(item => item.message).join(' '); } catch (_) {}
+   throw new Error(errorText);
+  }
+  message.textContent = '';
+  $$('.form-step', form).forEach(step => step.classList.remove('active'));
+  $('.form-actions', form).hidden = true;
+  $('.step-bars', modal).hidden = true;
+  $('#step-indicator').textContent = 'COMPLETE';
+  $('#form-success').hidden = false;
+  $('.modal-dialog').scrollTop = 0;
+  form.reset();
+ } catch (error) {
+  message.textContent = error.message || 'Network error. Check your connection and try again.';
+ } finally {
+  enquirySending = false;
+  button.disabled = false;
+  button.innerHTML = 'Submit enquiry <span>↗</span>';
+ }
+});
+
 
 // V4.1 interactive illustrative pipeline
 (()=>{const grid=document.getElementById('pipeline-grid');if(!grid)return;const stages=['Source check','Extract data','Validate fields','Reconcile','Generate output','Quality review'];const records=Array.from({length:14},(_,i)=>`R${String(i+1).padStart(2,'0')}`);let step=0,paused=false,selected=0,timer;const logs=document.getElementById('pipeline-log-lines'),detail=document.getElementById('pipeline-selection'),toggle=document.getElementById('pipeline-toggle');function status(r,s){const progress=Math.floor(step/2)-r; if(s===3&&r===5&&progress>=3)return 'flag';if(s<progress)return 'done';if(s===progress)return 'running';return 'wait'}function render(){grid.innerHTML='<div class="row-label">PROCESS / RECORD</div>'+records.map((r,i)=>`<div class="column-head">${r}</div>`).join('')+stages.map((stage,s)=>`<div class="row-label">${stage}</div>`+records.map((r,i)=>`<button type="button" class="cell ${status(i,s)} ${selected===i?'selected':''}" data-record="${i}" data-stage="${s}" aria-label="${r}, ${stage}: ${status(i,s)}"><i></i></button>`).join('')).join('');grid.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{selected=+b.dataset.record;showDetail(+b.dataset.stage);render()}));showDetail();}function showDetail(stage){const progress=Math.max(0,Math.min(stages.length-1,Math.floor(step/2)-selected));const s=stage??progress;detail.textContent=`${records[selected]} · ${stages[s]} · ${status(selected,s)==='flag'?'Flagged for review':status(selected,s)==='done'?'Completed':status(selected,s)==='running'?'Processing':'Waiting'}`;}function tick(){step=(step+1)%(records.length*2+stages.length*2);render();const rec=records[Math.min(records.length-1,Math.floor(step/2)%records.length)];const line=document.createElement('div');line.className='pipeline-log-entry';const t=document.createElement('time');t.textContent=new Date().toLocaleTimeString('en-GB',{hour12:false});const msg=document.createElement('span');msg.textContent=`${rec}  ${stages[step%stages.length].toLowerCase()}  ${step%7===0?'review flag':'ok'}`;line.append(t,msg);logs.prepend(line);while(logs.children.length>4)logs.lastElementChild.remove();}toggle.addEventListener('click',()=>{paused=!paused;toggle.textContent=paused?'Resume demo ▶':'Pause demo Ⅱ';document.getElementById('pipeline-live').textContent=paused?'Ⅱ PAUSED':'● LIVE DEMO'});document.getElementById('pipeline-reset').addEventListener('click',()=>{step=0;selected=0;logs.innerHTML='';render()});render();timer=setInterval(()=>{if(!paused&&!document.hidden)tick()},1150);})();
