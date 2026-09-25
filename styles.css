@@ -18,3 +18,353 @@
 
 /* V9: always-visible animated orbit fallback, independent of canvas initialization */
 .hero-visual .v9-orbit-fallback{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0;overflow:visible}.v9-orbit-fallback circle,.v9-orbit-fallback ellipse{fill:none;stroke:#a6e5a3;stroke-width:.8;opacity:.24}.v9-orbit-fallback .v9-orbit-points circle{fill:#c8ff72;stroke:none;opacity:.85;filter:drop-shadow(0 0 3px #c8ff72)}.v9-orbit-spin{transform-origin:270px 270px;animation:v9Orbit 36s linear infinite}.v9-orbit-points{transform-origin:270px 270px;animation:v9OrbitReverse 50s linear infinite}.hero-visual #network{z-index:1;pointer-events:auto}.hero-visual .visual-center{z-index:2}.hero-visual .orbit-label{z-index:3}@keyframes v9Orbit{to{transform:rotate(360deg)}}@keyframes v9OrbitReverse{to{transform:rotate(-360deg)}}@media(prefers-reduced-motion:reduce){.v9-orbit-spin,.v9-orbit-points{animation:none!important}}
+/* V13 — reference-matched premium blue/silver homepage */
+:root{--primary-blue:#165DCA;--deep-navy:#142440;--metallic-silver:#B8C5D6;--ice-blue:#DCEEFF;--sky-blue:#87BDF0;--background:#fff;--background-soft:#F3F8FF}
+.hero-v13{position:relative;min-height:740px;color:var(--deep-navy);overflow:hidden;background:#eaf5ff;padding-bottom:116px}
+.hero-v13-bg{position:absolute;inset:0 0 116px;background:url('assets/hero-reference.png') center/cover no-repeat;filter:saturate(.9) brightness(1.04)}
+.hero-v13-overlay{position:absolute;inset:0 0 116px;background:linear-gradient(90deg,rgba(247,251,255,.94) 0%,rgba(240,248,255,.82) 37%,rgba(223,241,255,.12) 64%,rgba(255,255,255,.03) 100%)}
+.hero-v13 .hero-inner{position:relative;z-index:2;max-width:1440px;margin:auto;min-height:624px;padding:92px 5vw 40px;display:grid;grid-template-columns:47% 53%;align-items:center}
+.hero-v13 .eyebrow{color:#30445f;letter-spacing:.28em;font-size:11px;font-weight:700;margin-bottom:34px}
+.hero-v13 h1{font-size:clamp(58px,5.7vw,92px);line-height:.93;letter-spacing:-.055em;color:#071b42;margin:0 0 24px;font-weight:700}
+.hero-v13 h1 em{color:#0868e8;font-style:normal}
+.hero-v13 .hero-sub{max-width:610px;color:#405674;font-size:19px;line-height:1.55;margin:0}
+.hero-v13 .hero-actions{display:flex;gap:18px;margin-top:30px;align-items:center}
+.hero-v13 .btn-lime{background:linear-gradient(135deg,#0b78f2,#155dcc);color:white;border:0;border-radius:999px;padding:17px 28px;box-shadow:0 10px 28px rgba(22,93,202,.18)}
+.hero-v13 .v13-outline{border:1.5px solid #165DCA;border-radius:999px;padding:15px 28px;background:rgba(255,255,255,.65);color:#142440;font-weight:700}
+.v13-cards{position:relative;height:520px}.v13-globe{position:absolute;width:330px;height:330px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-48%);background:radial-gradient(circle at 40% 32%,rgba(255,255,255,.95),rgba(68,157,241,.28) 28%,rgba(18,92,190,.78) 65%,rgba(5,47,120,.96));border:1px solid rgba(255,255,255,.9);box-shadow:0 0 50px rgba(74,166,255,.55),inset 0 0 50px rgba(255,255,255,.45)}
+.v13-globe:before,.v13-globe:after{content:"";position:absolute;inset:-34px;border:1px solid rgba(22,93,202,.45);border-radius:50%;transform:rotate(24deg)}.v13-globe:after{inset:-58px 8px;transform:rotate(-35deg)}
+.v13-globe .aq-logo-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1.45);filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
+.v13-card{position:absolute;width:205px;min-height:90px;border:1px solid rgba(255,255,255,.8);border-radius:20px;background:rgba(255,255,255,.84);backdrop-filter:blur(14px);box-shadow:0 12px 35px rgba(20,60,110,.14);padding:17px;display:flex;gap:14px;align-items:center;color:#10284d}.v13-card>b{font-size:30px;color:#0870eb}.v13-card strong{font-size:14px;line-height:1.15}.v13-card small{display:block;color:#4f6786;font-size:10px;margin-top:5px;line-height:1.2}.v13-card.c1{left:1%;top:5%}.v13-card.c2{right:-3%;top:9%}.v13-card.c3{left:-2%;top:40%}.v13-card.c4{right:-6%;top:41%}.v13-card.c5{left:2%;bottom:2%}.v13-card.c6{right:-3%;bottom:3%}
+.v13-industries{position:absolute;z-index:3;left:0;right:0;bottom:0;min-height:116px;padding:18px 5vw;background:rgba(239,248,255,.9);backdrop-filter:blur(15px);border-top:1px solid rgba(22,93,202,.12)}.v13-industries>p{font-size:10px;letter-spacing:.28em;font-weight:800;margin:0 0 17px;color:#18355e}.v13-industries>div{display:flex;align-items:center;justify-content:space-between;gap:15px}.v13-industries span{font-size:13px;font-weight:600;color:#18355e;white-space:nowrap}
+@media(max-width:900px){.hero-v13{padding-bottom:0}.hero-v13-bg,.hero-v13-overlay{inset:0}.hero-v13 .hero-inner{grid-template-columns:1fr;padding-top:115px}.hero-v13 .hero-copy{z-index:2}.hero-v13 h1{font-size:55px}.hero-v13 .hero-sub{font-size:16px}.v13-cards{height:520px;margin-top:20px}.v13-industries{position:relative}.v13-industries>div{overflow-x:auto;justify-content:flex-start;padding-bottom:8px}.v13-industries span{padding-right:25px}.v13-card{width:175px}.v13-card.c2,.v13-card.c4,.v13-card.c6{right:0}.v13-card.c1,.v13-card.c3,.v13-card.c5{left:0}}
+
+/* V14 — approved silver / ice-blue / restrained royal-blue direction */
+:root{
+  --primary-blue:#165DCA;--deep-navy:#142440;--metallic-silver:#B8C5D6;
+  --ice-blue:#DCEEFF;--sky-blue:#87BDF0;--background:#FFFFFF;--background-soft:#F3F8FF;
+  --night:#142440;--deep:#1d3557;--lime:#165DCA;--mint:#87BDF0;--cream:#F7FAFE;
+  --ink:#142440;--muted:#62728a;--border:#d9e2ee;
+}
+body{background:linear-gradient(180deg,#fff 0%,#f7faff 100%);color:var(--deep-navy)}
+.progress{background:linear-gradient(90deg,#dce6f2,#fff,#165DCA)}
+
+/* Desktop hero uses the approved composed art exactly, avoiding the blue wash. */
+@media(min-width:901px){
+  .header{height:6.45vw;min-height:72px;max-height:100px;padding:0 5.2vw;color:transparent;background:transparent;border:0;pointer-events:none}
+  .header .brand,.header .nav,.header .header-cta,.header .menu-button{opacity:0;pointer-events:none}
+  .hero-v13{height:min(66.6667vw,1024px);min-height:720px;padding:0;background:#f7fbff;overflow:hidden}
+  .hero-v13-bg{inset:0;background:url('assets/hero-silver-final.png') center top/100% 100% no-repeat;filter:none}
+  .hero-v13-overlay,.hero-v13 .hero-inner,.v13-industries{display:none!important}
+  .hero-v13:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,rgba(255,255,255,.08),transparent 28%,transparent 67%,rgba(184,197,214,.07));mix-blend-mode:screen}
+  .hero-v13 .v14-hotspot{display:block}
+}
+/* Real clickable regions over the composed hero art. */
+.v14-hotspot{display:none;position:absolute;z-index:8;border-radius:999px;background:transparent;color:transparent;font-size:0}
+.v14-contact{top:3.1%;right:3.2%;width:11.5%;height:5.4%}
+.v14-capabilities{left:5.2%;top:53.4%;width:17.8%;height:5.7%}
+.v14-conversation{left:24.2%;top:53.4%;width:14.4%;height:5.7%;border:0}
+
+/* Carry the silver/blue identity through the rest of the site. */
+.section{background:linear-gradient(180deg,#fff,#f8fbff);border-color:#dce5f0}
+.section.dark,.v5-story.dark,.v7-strengths{background:linear-gradient(145deg,#142440,#1c365a);color:#fff}
+.eyebrow,.ink-eye,.section-aside{color:#55708f}
+.section h2 span{color:#8b9db2}
+.btn-lime,.header-cta{background:linear-gradient(135deg,#0874ea,#165DCA)!important;color:#fff!important;box-shadow:0 10px 28px rgba(22,93,202,.16)}
+.btn-dark{background:#142440;color:#fff}
+.explorer{border-color:#d9e3ef;box-shadow:0 20px 55px rgba(20,36,64,.06)}
+.explorer-tab.active,.explorer-tab:hover{background:#edf6ff}
+.explorer-panel{background:linear-gradient(145deg,#142440,#21466f)}
+.panel-link,.panel-flow{color:#87BDF0}.panel-flow span{border-color:#6e8fb3;color:#eef7ff}
+.panel-decoration,.panel-decoration span{border-color:rgba(184,197,214,.18)!important}
+.v8-story-step.active{background:#e8f4ff;border-color:#87BDF0}.v8-story-step.done{background:#f0f6fc}
+.v7-strength-card,.v7-dev-grid,.chart-wrap{border-color:#d7e2ee}
+.contact-band{background:linear-gradient(135deg,#142440 0%,#1c3e67 65%,#285783 100%)}
+.contact-band:after{border-color:rgba(220,238,255,.16);box-shadow:0 0 0 90px rgba(220,238,255,.035),0 0 0 180px rgba(184,197,214,.025)}
+.footer{background:#0e1c31;color:#b9c8da}
+.aq-logo-mark i{background:linear-gradient(145deg,#eef4fb,#165DCA)}
+.aq-logo-mark i:nth-child(2){background:#87BDF0}.aq-logo-mark i:nth-child(3){background:#B8C5D6}.aq-logo-mark i:nth-child(4){background:#165DCA}
+.v8-wordmark span{color:#165DCA}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline-color:#87BDF0}
+
+@media(max-width:900px){
+ .header{background:rgba(255,255,255,.9);color:#142440;border-bottom:1px solid #dbe6f2;backdrop-filter:blur(14px)}
+ .brand,.v8-wordmark{color:#142440}.menu-button span{background:#142440}.nav{background:#fff}.nav a{color:#142440}
+ .hero-v13{background:#f5faff}.hero-v13-bg{background:url('assets/hero-silver-final.png') center/cover no-repeat;filter:saturate(.72) brightness(1.08);opacity:.36}
+ .hero-v13-overlay{display:block;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(243,248,255,.78))}
+ .hero-v13 .hero-inner{display:grid}.v13-industries{display:block;background:rgba(248,251,255,.94)}
+ .v13-globe{filter:saturate(.75);box-shadow:0 0 55px rgba(184,197,214,.72),inset 0 0 45px rgba(255,255,255,.65)}
+ .v13-card{background:rgba(255,255,255,.91);border-color:#fff;box-shadow:0 14px 35px rgba(20,36,64,.10)}
+}
+
+/* V15 — restore revolving intelligence neurons + complete silver / royal-blue system */
+.v15-neuron-orbits{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;overflow:visible}
+.v15-orbit-lines{transform-origin:1060px 395px;animation:v15Orbit 28s linear infinite}
+.v15-orbit-lines ellipse{fill:none;stroke:#7fa9dd;stroke-width:1;opacity:.26;filter:drop-shadow(0 0 2px rgba(255,255,255,.9))}
+.v15-neurons{transform-origin:1060px 395px;animation:v15Orbit 16s linear infinite}
+.v15-neurons-reverse{animation:v15OrbitReverse 23s linear infinite}
+.v15-neurons circle{fill:#f8fbff;stroke:#8aa8ca;stroke-width:1;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 8px rgba(22,93,202,.55))}
+@keyframes v15Orbit{to{transform:rotate(360deg)}}@keyframes v15OrbitReverse{to{transform:rotate(-360deg)}}
+
+/* Full-site palette: pearl white + sparkling silver + restrained royal blue */
+:root{--night:#142440;--deep:#1b3558;--lime:#165DCA;--mint:#87BDF0;--cream:#f8fbff;--ink:#142440;--muted:#64758b;--border:#d7e2ef}
+body{background:#f8fbff;color:#142440}
+.section:not(.dark):not(.v5-story){background:linear-gradient(180deg,#ffffff 0%,#f7fbff 68%,#f1f6fc 100%)}
+.section.dark,.v5-story.dark,.engine.dark,.industries.dark{background:radial-gradient(circle at 82% 15%,#274f7c 0,#18375c 28%,#142440 72%)!important;color:#f8fbff}
+.section.dark .eyebrow,.section.dark .section-aside,.v5-story.dark .eyebrow{color:#b8c5d6!important}
+.section.dark p,.engine.dark p,.industries.dark p{color:#c7d4e3}
+.hero h1 em,.engine h2 em,.industries h2 em,.contact-band h2 em,.v7-strengths-head h2 em{color:#87BDF0!important}
+.ink-eye,.eyebrow{color:#165DCA}.section-aside{color:#7d8fa6}
+.explorer-tab.active,.explorer-tab:hover,.v8-story-step.active{background:#eaf4ff!important;border-color:#87BDF0!important}
+.explorer-panel,.v5-consult-result,.v7-dev-grid{background:linear-gradient(145deg,#142440,#234d79)!important}
+.panel-flow span,.v5-impact-pills span{border-color:#8faac7!important;color:#eaf5ff!important}
+.panel-link,.core-actions span,.v7-dev-insights b,.v7-dev-live{color:#87BDF0!important}
+.panel-decoration,.panel-decoration span{border-color:rgba(184,197,214,.25)!important}
+.v5-choice.active,.scenario.active{background:#165DCA!important;color:#fff!important;border-color:#165DCA!important}
+.v5-track-line,.v5-track-item:before{background:#b8c5d6!important}.v6-consult-runner{background:#165DCA!important;box-shadow:0 0 0 6px rgba(135,189,240,.18)!important}
+.engine-card{background:rgba(255,255,255,.07)!important;border-color:#53779f!important;color:#f7fbff!important}.engine-card small{color:#b9c9da!important}.engine-card.result{border-color:#87BDF0!important}.engine-core{border-color:#6d91b8!important;background:rgba(8,27,50,.35)!important}.core-status{background:#87BDF0!important;box-shadow:0 0 12px #87BDF0!important}.core-glyph span{background:linear-gradient(135deg,#fff,#87BDF0,#165DCA)!important}
+.engine-paths path{stroke:#7ea7d2!important}.engine-paths .aq-traveller{fill:#eaf5ff!important;stroke:#165DCA!important;filter:drop-shadow(0 0 5px #87BDF0)!important}
+.v7-strengths{background:linear-gradient(180deg,#fff,#f3f8ff)!important;color:#142440!important}.v7-strength-card{background:rgba(255,255,255,.92)!important;color:#142440!important;border-color:#d7e2ef!important}.v7-strength-card:hover{background:#edf6ff!important}.v7-card-art{background:radial-gradient(ellipse at center,#dceeff,#fff 70%)!important}.v7-card-art span{color:#165DCA!important}.v7-card-art i{border-color:#87BDF0!important}.v7-card-index{color:#6e86a2!important}.v7-strength-card p{color:#64758b!important}.v7-card-link{border-color:#d7e2ef!important}
+.industry-rows>div{border-color:#426589!important}.industry-rows>div:hover{background:rgba(135,189,240,.08)!important}.industry-rows span,.industry-rows b{color:#87BDF0!important}
+.about-bottom{border-color:#d7e2ef!important;color:#6c7f96!important}.about h2 span{color:#7f94ac!important}
+.contact-band{background:linear-gradient(130deg,#142440,#1f4774 65%,#2f6698)!important}.contact-band .btn-lime{background:linear-gradient(135deg,#f8fbff,#dceeff)!important;color:#142440!important}
+.footer{background:#0f1d32!important;color:#b8c5d6!important}.footer a:hover{color:#87BDF0!important}
+.modal-dialog{background:linear-gradient(180deg,#fff,#f4f8fd)!important;color:#142440!important}.step-bars i.current{background:#165DCA!important}.choice-grid input:checked+span{border-color:#165DCA!important;background:#edf6ff!important}.form-success p:not(.eyebrow){color:#64758b!important}
+.btn-lime,.header-cta{background:linear-gradient(135deg,#1d73dd,#165DCA)!important;color:#fff!important}.btn-dark{background:#142440!important;color:#fff!important}
+.progress{background:linear-gradient(90deg,#b8c5d6,#f8fbff,#165DCA)!important}
+
+@media(max-width:900px){.v15-neuron-orbits{opacity:.65}.v15-orbit-lines{transform-origin:1060px 395px}.v15-neurons,.v15-neurons-reverse{transform-origin:1060px 395px}}
+@media(prefers-reduced-motion:reduce){.v15-orbit-lines,.v15-neurons,.v15-neurons-reverse{animation:none!important}}
+
+/* V16 — 75% SILVER HOMEPAGE / 25% CONTROLLED BLUE */
+:root{
+  --aq-silver-0:#ffffff;--aq-silver-1:#f8fafc;--aq-silver-2:#eef2f6;
+  --aq-silver-3:#d9e0e8;--aq-silver-4:#b8c5d6;--aq-blue:#165DCA;--aq-navy:#142440;
+}
+/* Desktop: silver veil over approved composition; live neuron layer remains above it. */
+@media(min-width:901px){
+  .hero-v13-bg{
+    filter:saturate(.54) brightness(1.08) contrast(.96)!important;
+  }
+  .hero-v13:before{
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:
+      radial-gradient(circle at 68% 39%,rgba(255,255,255,.02) 0 19%,rgba(238,243,248,.10) 38%,transparent 55%),
+      linear-gradient(90deg,rgba(255,255,255,.20) 0%,rgba(248,250,252,.17) 36%,rgba(225,232,240,.10) 67%,rgba(255,255,255,.04) 100%);
+    mix-blend-mode:screen;
+  }
+  .hero-v13:after{
+    z-index:3!important;
+    background:linear-gradient(110deg,rgba(255,255,255,.22),rgba(218,226,235,.08) 42%,transparent 66%,rgba(184,197,214,.10))!important;
+  }
+  .v15-neuron-orbits{z-index:5!important;opacity:.9}
+  .v15-orbit-lines ellipse{stroke:#9aaec5!important;opacity:.30!important}
+  .v15-neurons circle{fill:#fff!important;stroke:#9aacbf!important;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 7px rgba(22,93,202,.42))!important}
+  .v14-hotspot{z-index:9!important}
+}
+/* Mobile uses the same pearl/silver balance while keeping blue as accent. */
+@media(max-width:900px){
+  .hero-v13{background:linear-gradient(145deg,#fff 0%,#f1f4f8 62%,#e8eef5 100%)!important}
+  .hero-v13-bg{filter:grayscale(.18) saturate(.48) brightness(1.15)!important;opacity:.24!important}
+  .hero-v13-overlay{background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(239,244,249,.90))!important}
+  .v13-industries{background:rgba(248,250,252,.97)!important}
+  .v13-globe{background:radial-gradient(circle at 38% 28%,#fff 0%,#edf2f7 30%,#c8d2de 60%,#758aa2 100%)!important;box-shadow:0 0 50px rgba(255,255,255,.95),0 0 65px rgba(184,197,214,.60),inset 0 0 42px rgba(255,255,255,.8)!important}
+}
+/* Whole site: silver is the canvas; blue is an accent rather than a wash. */
+body{background:#f6f8fa!important}
+.section:not(.dark):not(.v5-story),.v7-strengths{
+  background:linear-gradient(180deg,#fff 0%,#f7f9fb 52%,#edf1f5 100%)!important;
+}
+.section.dark,.v5-story.dark,.engine.dark,.industries.dark{
+  background:linear-gradient(145deg,#26384d 0%,#1b2d43 54%,#142440 100%)!important;
+}
+.explorer,.v7-strength-card,.modal-dialog,.chart-wrap{
+  border-color:#d5dde6!important;box-shadow:0 18px 45px rgba(20,36,64,.055)!important;
+}
+.v7-strength-card{background:rgba(255,255,255,.94)!important}
+.v7-card-art{background:radial-gradient(ellipse at center,#e9eef4,#fff 72%)!important}
+.explorer-tab.active,.explorer-tab:hover,.v8-story-step.active{background:#edf2f7!important}
+.about-bottom{border-color:#d5dde6!important}
+.contact-band{background:linear-gradient(128deg,#26384d 0%,#1b3553 70%,#165DCA 145%)!important}
+.footer{background:#142033!important}
+
+/* V16.1 — keep revolving intelligence network clear of capability cards */
+@media(min-width:901px){
+  /* Desktop hero cards are part of the approved hero artwork, so constrain the
+     live animation to the globe/network zone instead of allowing it over cards. */
+  .v15-neuron-orbits{
+    z-index:5!important;
+    clip-path:ellipse(17.2% 27.5% at 69% 39%);
+    -webkit-clip-path:ellipse(17.2% 27.5% at 69% 39%);
+  }
+  .v15-orbit-lines ellipse{opacity:.27!important}
+  .v15-neurons circle{opacity:.92}
+}
+@media(max-width:900px){
+  /* Mobile uses real HTML cards: keep the network behind them. */
+  .hero-v13 .hero-inner{z-index:6!important}
+  .v13-cards{z-index:7;isolation:isolate}
+  .v13-globe{z-index:1}
+  .v13-card{
+    z-index:8!important;
+    background:rgba(252,253,255,.985)!important;
+    border:1px solid rgba(255,255,255,.98)!important;
+    backdrop-filter:blur(18px) saturate(.7)!important;
+    -webkit-backdrop-filter:blur(18px) saturate(.7)!important;
+    box-shadow:0 14px 34px rgba(20,36,64,.14),0 0 0 1px rgba(184,197,214,.22)!important;
+  }
+  .v15-neuron-orbits{z-index:4!important;clip-path:ellipse(39% 42% at 69% 42%);-webkit-clip-path:ellipse(39% 42% at 69% 42%)}
+}
+
+/* V17 — HARD GLOBE MASK + OPAQUE FOREGROUND CARDS
+   Desktop artwork contains the photographic environment; real HTML cards are
+   deliberately rendered above it to guarantee zero animated lines through cards. */
+@media(min-width:901px){
+  .hero-v13 .hero-inner{
+    display:block!important;position:absolute!important;inset:0!important;
+    max-width:none!important;min-height:0!important;padding:0!important;z-index:7!important;
+    pointer-events:none;
+  }
+  .hero-v13 .hero-copy{display:none!important}
+  .hero-v13 .hero-visual.v13-cards{
+    display:block!important;position:absolute!important;inset:0!important;
+    width:100%!important;height:100%!important;margin:0!important;z-index:8!important;
+    isolation:isolate;pointer-events:none;
+  }
+  /* The globe itself is already in the approved background artwork. */
+  .hero-v13 .v13-globe{display:none!important}
+  /* True foreground cards: fully opaque pearl white, no backdrop transparency. */
+  .hero-v13 .v13-card{
+    display:flex!important;position:absolute!important;z-index:30!important;
+    width:13.7%!important;min-height:8.9%!important;padding:1.05vw 1.15vw!important;
+    border-radius:1.35vw!important;background:#fcfdff!important;
+    border:1px solid rgba(184,197,214,.50)!important;
+    box-shadow:0 12px 30px rgba(20,36,64,.12),inset 0 1px 0 #fff!important;
+    backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+    color:#142440!important;gap:.8vw!important;align-items:center!important;
+    pointer-events:auto;
+  }
+  .hero-v13 .v13-card>b{font-size:2vw!important;color:#165DCA!important;line-height:1}
+  .hero-v13 .v13-card strong{font-size:.92vw!important;line-height:1.15!important;color:#142440!important}
+  .hero-v13 .v13-card small{font-size:.67vw!important;line-height:1.18!important;color:#64758b!important;margin-top:.28vw!important}
+  /* Positions align to the six approved artwork cards. */
+  .hero-v13 .v13-card.c1{left:48.7%!important;top:17.9%!important;right:auto!important;bottom:auto!important}
+  .hero-v13 .v13-card.c2{left:80.7%!important;top:19.8%!important;right:auto!important;bottom:auto!important}
+  .hero-v13 .v13-card.c3{left:48.8%!important;top:36.5%!important;right:auto!important;bottom:auto!important}
+  .hero-v13 .v13-card.c4{left:82.7%!important;top:36.4%!important;right:auto!important;bottom:auto!important}
+  .hero-v13 .v13-card.c5{left:48.8%!important;top:51.4%!important;right:auto!important;bottom:auto!important}
+  .hero-v13 .v13-card.c6{left:80.7%!important;top:51.8%!important;right:auto!important;bottom:auto!important}
+
+  /* HARD animation boundary: only the central globe interior can contain live motion. */
+  .v15-neuron-orbits{
+    z-index:6!important;
+    clip-path:circle(10.9% at 69.0% 38.6%)!important;
+    -webkit-clip-path:circle(10.9% at 69.0% 38.6%)!important;
+    opacity:.92!important;
+  }
+  .v15-orbit-lines ellipse{opacity:.32!important;stroke:#6f91bb!important}
+  .v15-neurons circle{opacity:.95!important}
+}
+
+/* V18 — approved bright pearl/silver hero */
+@media (min-width:901px){
+  .hero-v13{
+    height:min(51.93vw,864px)!important;
+    min-height:640px!important;
+    padding:0!important;
+    background:#fbfcfd!important;
+    overflow:hidden!important;
+  }
+  .hero-v13-bg{
+    inset:0!important;
+    background:url('assets/hero-v18-approved.png') center top/100% 100% no-repeat!important;
+    filter:none!important;
+    opacity:1!important;
+  }
+  .hero-v13:before,.hero-v13:after,.hero-v13-overlay{display:none!important}
+  /* The approved artwork already contains copy/cards. Keep live interactive hotspots only. */
+  .hero-v13 .hero-inner,.hero-v13 .v13-industries{display:none!important}
+  .hero-v13 .v14-hotspot{display:block!important;z-index:20!important}
+
+  /* Live intelligence motion is restricted to the globe only. */
+  .v15-neuron-orbits{
+    display:block!important;
+    z-index:6!important;
+    opacity:.68!important;
+    clip-path:circle(17.2% at 62.3% 49.4%)!important;
+    -webkit-clip-path:circle(17.2% at 62.3% 49.4%)!important;
+    mix-blend-mode:multiply;
+  }
+  .v15-orbit-lines{
+    transform-origin:957px 506px!important;
+    animation:v15Orbit 22s linear infinite!important;
+  }
+  .v15-neurons,.v15-neurons-reverse{
+    transform-origin:957px 506px!important;
+    animation:v15Orbit 14s linear infinite!important;
+  }
+  .v15-neurons-reverse{animation-name:v15OrbitReverse!important;animation-duration:19s!important}
+  .v15-orbit-lines ellipse{stroke:#6e96c8!important;stroke-width:1.1!important;opacity:.34!important}
+  .v15-neurons circle{fill:#fff!important;stroke:#6d91bc!important;opacity:.95!important;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 5px rgba(22,93,202,.35))!important}
+}
+
+/* V18 full-site palette — brighter, calmer, less blue */
+:root{
+ --primary-blue:#165DCA;--deep-navy:#142440;--metallic-silver:#B8C5D6;
+ --ice-blue:#EDF5FC;--sky-blue:#87BDF0;--background:#FFFFFF;--background-soft:#F8FAFC;
+ --cream:#FBFCFD;--ink:#142440;--muted:#66758A;--border:#DDE3EA;
+}
+body{background:#FBFCFD!important;color:#142440!important}
+.intro,.engine,.industries,.v7-strengths,.section{background-color:#FBFCFD}
+.explorer-panel,.v7-strength-card,.industry-card,.v7-demo-controls,.v7-demo-visual{background:#fff!important;border-color:#DDE3EA!important}
+.contact-band{background:linear-gradient(135deg,#EEF1F5,#FFFFFF)!important;color:#142440!important}
+footer{background:#F3F5F7!important;color:#526174!important}
+
+
+/* ================= V19 APPROVED SPACIOUS HERO =================
+   User-approved composition: compact intelligence cluster on the right,
+   full-bleed hero, bright silver/white, substantial breathing room.
+*/
+@media (min-width:901px){
+  .hero-v13{
+    width:100%!important;
+    max-width:none!important;
+    min-height:620px!important;
+    height:min(47vw,760px)!important;
+    overflow:hidden!important;
+    background:#fff!important;
+  }
+  .hero-v13-bg{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    background-image:url('assets/hero-v19-approved.png')!important;
+    background-repeat:no-repeat!important;
+    background-size:cover!important;
+    background-position:center center!important;
+  }
+
+  /* Keep the live neuron effect subtle and confined to the smaller,
+     right-shifted globe zone in the approved composition. */
+  .v15-neuron-orbits{
+    transform:scale(.53)!important;
+    transform-origin:75.5% 49%!important;
+    clip-path:circle(10.8% at 75.5% 49%)!important;
+    -webkit-clip-path:circle(10.8% at 75.5% 49%)!important;
+    opacity:.58!important;
+    pointer-events:none!important;
+  }
+  .v15-orbit-lines ellipse{opacity:.30!important}
+}
+
+/* Bright, low-fatigue palette across the site. */
+body{background:#fff!important;color:#142440}
+.section,.section-light,.industries-strip,.process-strip{
+  background:linear-gradient(180deg,#fff 0%,#fbfdff 100%)!important;
+}
+.card,.panel,.service-card,.cap-card{
+  background:rgba(255,255,255,.96)!important;
+  border-color:rgba(184,197,214,.52)!important;
+  box-shadow:0 12px 34px rgba(20,36,64,.07)!important;
+}
+/* ================= END V19 ================= */
