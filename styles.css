@@ -53,7 +53,7 @@ body{background:linear-gradient(180deg,#fff 0%,#f7faff 100%);color:var(--deep-na
   .header{height:6.45vw;min-height:72px;max-height:100px;padding:0 5.2vw;color:transparent;background:transparent;border:0;pointer-events:none}
   .header .brand,.header .nav,.header .header-cta,.header .menu-button{opacity:0;pointer-events:none}
   .hero-v13{height:min(66.6667vw,1024px);min-height:720px;padding:0;background:#f7fbff;overflow:hidden}
-  .hero-v13-bg{inset:0;background:url('assets/hero-silver-final.png') center top/100% 100% no-repeat;filter:none}
+  .hero-v13-bg{inset:0;background:none center top/100% 100% no-repeat;filter:none}
   .hero-v13-overlay,.hero-v13 .hero-inner,.v13-industries{display:none!important}
   .hero-v13:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,rgba(255,255,255,.08),transparent 28%,transparent 67%,rgba(184,197,214,.07));mix-blend-mode:screen}
   .hero-v13 .v14-hotspot{display:block}
@@ -89,7 +89,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(max-width:900px){
  .header{background:rgba(255,255,255,.9);color:#142440;border-bottom:1px solid #dbe6f2;backdrop-filter:blur(14px)}
  .brand,.v8-wordmark{color:#142440}.menu-button span{background:#142440}.nav{background:#fff}.nav a{color:#142440}
- .hero-v13{background:#f5faff}.hero-v13-bg{background:url('assets/hero-silver-final.png') center/cover no-repeat;filter:saturate(.72) brightness(1.08);opacity:.36}
+ .hero-v13{background:#f5faff}.hero-v13-bg{background:none center/cover no-repeat;filter:saturate(.72) brightness(1.08);opacity:.36}
  .hero-v13-overlay{display:block;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(243,248,255,.78))}
  .hero-v13 .hero-inner{display:grid}.v13-industries{display:block;background:rgba(248,251,255,.94)}
  .v13-globe{filter:saturate(.75);box-shadow:0 0 55px rgba(184,197,214,.72),inset 0 0 45px rgba(255,255,255,.65)}
@@ -343,7 +343,7 @@ footer{background:#F3F5F7!important;color:#526174!important}
     inset:0!important;
     width:100%!important;
     height:100%!important;
-    background-image:url("./assets/hero-v19-approved.webp")!important;
+    background-image:url("./hero-v19-approved.webp")!important;
     background-repeat:no-repeat!important;
     background-size:100% 100%!important;
     background-position:0 0!important;
@@ -368,25 +368,4 @@ html:not(.js) .reveal{opacity:1!important;transform:none!important}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
 
 
-/* ==========================================================
-   V19.3 DIAGNOSTIC — ALL HERO NEURON/ORBIT ANIMATION DISABLED
-   Purpose: isolate GitHub Pages blank-screen issue.
-   ========================================================== */
-.v15-neuron-orbits,
-.v15-neuron-orbits *,
-.v15-orbit-lines,
-.v15-orbit-lines *,
-.neuron-orbit,
-.neuron-orbit *,
-.orbit,
-.orbit *,
-[class*="orbit"],
-[class*="neuron"]{
-  animation:none!important;
-  transition:none!important;
-  transform:none!important;
-}
-.v15-neuron-orbits{
-  display:none!important;
-}
-/* ========================================================== */
+
