@@ -366,3 +366,27 @@ body{background:#fff!important;color:#142440}
 /* GitHub Pages fail-safe: content must never remain invisible while JS loads. */
 html:not(.js) .reveal{opacity:1!important;transform:none!important}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+
+
+/* ==========================================================
+   V19.3 DIAGNOSTIC — ALL HERO NEURON/ORBIT ANIMATION DISABLED
+   Purpose: isolate GitHub Pages blank-screen issue.
+   ========================================================== */
+.v15-neuron-orbits,
+.v15-neuron-orbits *,
+.v15-orbit-lines,
+.v15-orbit-lines *,
+.neuron-orbit,
+.neuron-orbit *,
+.orbit,
+.orbit *,
+[class*="orbit"],
+[class*="neuron"]{
+  animation:none!important;
+  transition:none!important;
+  transform:none!important;
+}
+.v15-neuron-orbits{
+  display:none!important;
+}
+/* ========================================================== */
