@@ -1,12 +1,8 @@
-# AssetQuant Website — Clean Stable Baseline V2
+AssetQuant V47 — Footer Polish
 
-Stable prototype. Hero image is intentionally stored at the project root so both local Live Server and GitHub Pages resolve it consistently.
-
-Runtime files:
-- index.html
-- contact.html
-- favicon.svg
-- hero-approved-blue-silver-2x.webp
-- css/styles.css
-- js/script.js
-- .nojekyll
+Based on approved V46.
+Only visual change:
+- Footer navy changed to #0D3268, a slightly lighter premium navy.
+- This improves contrast for the transparent blue/silver AQ emblem without making the footer bright.
+- Header branding, logo assets, contact form, workflow and all other website behavior remain unchanged.
+- assets/logo.png and assets/logo-print.png remain packed in the build.
