@@ -1,0 +1,9 @@
+AssetQuant V58 — Production Dependency Cleanup
+
+- Removed all Google Fonts requests.
+- Uses a local system-font stack.
+- Chart.js 4.4.1 is served locally from assets/vendor/chartjs/.
+- Chart.js MIT license retained alongside the library.
+- Formspree remains temporarily for enquiry processing.
+- Privacy Policy updated to reflect actual external-service usage.
+- Existing V57 legal notices, same-tab demo navigation, design and interactions preserved.

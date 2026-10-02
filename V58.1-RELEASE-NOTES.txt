@@ -1,0 +1,9 @@
+AssetQuant V58.1 — Brand Consistency Patch
+
+Based on V58 Production Cleanup.
+
+Changes:
+- Added the approved AQ mark + AssetQuant wordmark lockup to all 12 interactive demo page headers.
+- Added the same AQ mark + AssetQuant lockup to Privacy Policy and Terms of Use headers.
+- Preserved V58 demo logic, same-tab navigation, legal disclosures, local Chart.js, system fonts and temporary Formspree integration.
+- No changes to homepage layout, demo calculations, charts, content or navigation behavior.

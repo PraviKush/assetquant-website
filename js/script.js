@@ -6,8 +6,8 @@ const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecti
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
 const modal=document.getElementById("contact-modal");
-const openModal=()=>{modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");setTimeout(()=>modal.querySelector("input")?.focus(),100)};
-const closeModal=()=>{modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.classList.remove("modal-open")};
+const openModal=()=>{modal.classList.add("open");document.body.classList.add("modal-open");setTimeout(()=>modal.querySelector("input")?.focus(),100)};
+const closeModal=()=>{modal.classList.remove("open");document.body.classList.remove("modal-open")};
 document.querySelectorAll(".js-contact").forEach(b=>b.addEventListener("click",openModal));
 modal.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",closeModal));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open"))closeModal()});
@@ -25,7 +25,26 @@ document.getElementById("run-flow")?.addEventListener("click",()=>{
  const tabs=[...document.querySelectorAll(".flow-tabs b")],state=document.getElementById("run-state");tabs.forEach(x=>x.classList.remove("on"));state.textContent="Running…";
  let i=0;const timer=setInterval(()=>{tabs.forEach(x=>x.classList.remove("on"));tabs[i].classList.add("on");i++;if(i===tabs.length){clearInterval(timer);setTimeout(()=>state.textContent="Ready for human review",250)}},420);
 });
-// V36 governance workflow — interactive six-stage control model.
+// V22: capability rows expand to show representative work and live demos.
+document.querySelectorAll('.cap-row').forEach(btn=>{
+ const toggle=()=>{
+  const art=btn.closest('article');
+  const open=!art.classList.contains('cap-open');
+  document.querySelectorAll('.cap-list article.cap-open').forEach(a=>{a.classList.remove('cap-open');a.querySelector('.cap-row').setAttribute('aria-expanded','false')});
+  if(open){art.classList.add('cap-open');btn.setAttribute('aria-expanded','true')}
+ };
+ btn.addEventListener('click',toggle);
+ btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+});
+
+// V23: excellence cards flip to show what each step means in practice.
+document.querySelectorAll('.steps article.flip').forEach(card=>{
+ const toggle=()=>{const f=card.classList.toggle('flipped');card.setAttribute('aria-pressed',String(f))};
+ card.addEventListener('click',toggle);
+ card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+});
+
+// V36 governance workflow: interactive six-stage control model.
 const governanceStages = [
  {badge:'DISCOVERY & CONTEXT',title:'Understand the Decision & Constraints',desc:'Frame the business objective, operating context, stakeholders and constraints before selecting analytical or technology interventions.',tool:'Context & Requirements Mapper',human:'Engagement Lead',telemetry:'Context Signals',mode:'SCOPED INTAKE',lines:['OBJECTIVE_CONTEXT_CAPTURED','CONSTRAINTS_MAPPED','DECISION_SCOPE_CONFIRMED'],risk:'Defined Scope',control:'Human Framing'},
  {badge:'EVIDENCE RETRIEVAL',title:'Retrieve Relevant Evidence',desc:'Bring together the source data, documents, prior knowledge and operational evidence needed to support the decision.',tool:'Evidence Retrieval Layer',human:'Domain Analyst',telemetry:'Evidence Trace',mode:'SOURCE CONTROL',lines:['SOURCE_SET_CONNECTED','RELEVANT_EVIDENCE_RETRIEVED','PROVENANCE_LINKS_READY'],risk:'Source Bounded',control:'Evidence Traceable'},
@@ -37,11 +56,41 @@ const governanceStages = [
 const stageTabs=[...document.querySelectorAll('.stage-tab')];
 function renderGovernanceStage(i){const s=governanceStages[i];if(!s)return;stageTabs.forEach((b,n)=>b.classList.toggle('active',n===i));
  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};set('stage-badge',s.badge);set('stage-count',`Step ${i+1} of 6`);set('stage-title',s.title);set('stage-description',s.desc);set('stage-tool',s.tool);set('stage-human',s.human);set('telemetry-title',s.telemetry);set('telemetry-mode',s.mode);set('stage-risk',s.risk);set('stage-control',s.control);
- const t=document.getElementById('stage-terminal');if(t)t.innerHTML=s.lines.map(x=>`<code>&gt; ${x}</code>`).join('');}
-stageTabs.forEach((b,i)=>b.addEventListener('click',()=>renderGovernanceStage(i)));if(stageTabs.length)renderGovernanceStage(5);
+ typeTerminal(s.lines,s.mode);}
+// V41: the telemetry terminal types its signals live for the selected stage.
+let termTimers=[];
+function typeTerminal(lines,mode){
+ const t=document.getElementById('stage-terminal');if(!t)return;
+ termTimers.forEach(clearTimeout);termTimers=[];
+ t.classList.remove('signal-run');
+ const statusLine='> '+String(mode||'STAGE').replace(/\s+/g,'_')+' :: ACTIVE';
+ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){
+  t.innerHTML=lines.map(x=>`<code>&gt; ${x}</code>`).join('')+`<code class="term-ok">${statusLine.replace('>','&gt;')}</code>`;return;
+ }
+ t.innerHTML='';
+ let li=0;
+ const nextLine=()=>{
+  const isStatus=li===lines.length;
+  if(li>lines.length)return;
+  const code=document.createElement('code');
+  code.className='typing'+(isStatus?' term-ok':'');
+  t.appendChild(code);
+  const text=isStatus?statusLine:'> '+lines[li];
+  const start=performance.now(),cps=75;
+  const tick=()=>{
+   const ci=Math.min(text.length,Math.max(1,Math.floor((performance.now()-start)/1000*cps)));
+   code.textContent=text.slice(0,ci);
+   if(ci<text.length){termTimers.push(setTimeout(tick,26));}
+   else{code.classList.remove('typing');li++;termTimers.push(setTimeout(nextLine,isStatus?0:140));}
+  };
+  termTimers.push(setTimeout(tick,30));
+ };
+ nextLine();
+}
+stageTabs.forEach((b,i)=>b.addEventListener('click',()=>renderGovernanceStage(i)));if(stageTabs.length)renderGovernanceStage(0);
 
 
-// V40 — keep every enquiry submission inside AssetQuant.
+// V40: keep every enquiry submission inside AssetQuant.
 (() => {
   const form = document.querySelector('#contact-modal form[action="https://formspree.io/f/mbglgzkw"]');
   if (!form) return;
@@ -128,7 +177,7 @@ stageTabs.forEach((b,i)=>b.addEventListener('click',()=>renderGovernanceStage(i)
   });
 })();
 
-// V40 — visible workflow motion attached to the actual V36 elements.
+// V40: visible workflow motion attached to the actual V36 elements.
 (() => {
   const tabs = [...document.querySelectorAll('.stage-tab')];
   const panel = document.querySelector('.stage-panel');
@@ -138,12 +187,6 @@ stageTabs.forEach((b,i)=>b.addEventListener('click',()=>renderGovernanceStage(i)
     panel.classList.add('processing');
     setTimeout(() => {
       panel.classList.remove('processing');
-      const terminal = document.getElementById('stage-terminal');
-      if (terminal) {
-        terminal.classList.remove('signal-run');
-        void terminal.offsetWidth;
-        terminal.classList.add('signal-run');
-      }
     }, 330);
   }
 
