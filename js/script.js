@@ -9,6 +9,7 @@ const modal=document.getElementById("contact-modal");
 const openModal=()=>{modal.classList.add("open");document.body.classList.add("modal-open");setTimeout(()=>modal.querySelector("input")?.focus(),100)};
 const closeModal=()=>{modal.classList.remove("open");document.body.classList.remove("modal-open")};
 document.querySelectorAll(".js-contact").forEach(b=>b.addEventListener("click",openModal));
+if(new URLSearchParams(location.search).get("contact")==="1"){openModal();history.replaceState(null,"",location.pathname+location.hash)}
 modal.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",closeModal));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open"))closeModal()});
 

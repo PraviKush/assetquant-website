@@ -1,0 +1,10 @@
+AssetQuant V58.3 — Production Hardening
+Date: 2026-10-02
+
+Changes from V58.2:
+- Privacy and Terms enquiry-flow links now open the homepage contact modal directly.
+- The temporary ?contact=1 trigger is removed from the address bar after the modal opens.
+- Removed assetquant-website-complete-LEGACY.html from the production package.
+- Confirmed existing enquiry fields already use proper HTML label elements; no form markup redesign was needed.
+
+No visual/design changes. SEO canonical/Open Graph/robots/sitemap remain intentionally deferred until assetquant.ai is connected.
