@@ -1,0 +1,10 @@
+AssetQuant V58.2 — Final QA Patch
+Date: 2026-10-02
+
+Changes from V58.1:
+- Removed “Mining & Resources” from the homepage industry strip; mining remains an illustrative demo.
+- Made Strategy Decision Room scenario wording explicitly illustrative.
+- Made Conversational Automation 60–70% statement explicitly modelled/illustrative.
+- Explicitly synchronized capability control: + collapsed / − expanded.
+
+Everything else remains unchanged from V58.1.

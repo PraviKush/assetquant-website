@@ -30,8 +30,9 @@ document.querySelectorAll('.cap-row').forEach(btn=>{
  const toggle=()=>{
   const art=btn.closest('article');
   const open=!art.classList.contains('cap-open');
-  document.querySelectorAll('.cap-list article.cap-open').forEach(a=>{a.classList.remove('cap-open');a.querySelector('.cap-row').setAttribute('aria-expanded','false')});
+  document.querySelectorAll('.cap-list article.cap-open').forEach(a=>{a.classList.remove('cap-open');const r=a.querySelector('.cap-row');r.setAttribute('aria-expanded','false');const sym=r.querySelector('.cap-toggle b');if(sym)sym.textContent='+'});
   if(open){art.classList.add('cap-open');btn.setAttribute('aria-expanded','true')}
+  const sym=btn.querySelector('.cap-toggle b');if(sym)sym.textContent=open?'−':'+';
  };
  btn.addEventListener('click',toggle);
  btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
